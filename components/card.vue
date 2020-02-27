@@ -1,16 +1,35 @@
 <template>
-  <nuxt-link
-    :to="{ name: 'blog-slug', params: {
-      sys: id
-    }}"
-    class="wrapper"
-  >
-    <article class="card">
-      <h1 class="card_title">{{ title }}</h1>
-      <p class="card_text">{{ id }}</p>
-      <p class="card_date">{{ date }}</p>
-    </article>
-  </nuxt-link>
+    <v-card
+      class="mx-auto"
+      max-width="400"
+    >
+        <nuxt-link
+        :to="{ name: 'blog-slug', params: {
+        sys: id
+        }}"
+        class="wrapper"
+        >
+            <v-img
+                class="white--text align-end"
+                height="200px"
+                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            >
+                <v-card-title>{{ title }}</v-card-title>
+            </v-img>
+
+            <v-card-text class="text--primary">
+            </v-card-text>
+
+            <v-card-actions>
+                <v-btn
+                color="orange"
+                text
+                >
+                この記事を読む
+                </v-btn>
+            </v-card-actions>
+        </nuxt-link>
+    </v-card>
 </template>
 <script>
 export default {
@@ -27,6 +46,6 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
 }
 </script>

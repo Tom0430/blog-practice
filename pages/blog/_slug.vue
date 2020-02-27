@@ -1,5 +1,8 @@
 <template>
   <section class="slug">
+    <div v-if="article.fields.images">
+      <img :src="article.fields.images.fields.file.url"/>
+    </div>
     <h1 class="slug_title">
       {{ article.fields.title }}
     </h1>
