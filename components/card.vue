@@ -1,7 +1,9 @@
 <template>
     <v-card
-      class="mx-auto"
-      max-width="400"
+      class="mx-auto text-center elevation-2 pa-12 headline"
+      max-width="900"
+      max-height="900"
+      v-ripple
     >
         <nuxt-link
         :to="{ name: 'blog-slug', params: {
@@ -11,8 +13,7 @@
         >
             <v-img
                 class="white--text align-end"
-                height="200px"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                :src="images"
             >
                 <v-card-title>{{ title }}</v-card-title>
             </v-img>
@@ -45,6 +46,10 @@ export default {
     date: {
       type: String,
       default: ''
+    },
+    images:{
+        type: String,
+        default: ''
     }
   },
 }

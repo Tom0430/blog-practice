@@ -1,12 +1,12 @@
 <template>
   <section class="slug">
-    <div v-if="article.fields.images">
-      <img :src="article.fields.images.fields.file.url"/>
+    <div v-if="article.fields.images.fields.file">
+      <img width="1100" height="800" :src="article.fields.images.fields.file.url"/>
     </div>
     <h1 class="slug_title">
       {{ article.fields.title }}
     </h1>
-    <p class="slug_date">{{ article.sys.updatedAt }}</p>
+    <p class="slug_date">{{ article.fields.dateTime }}</p>
     <div>
       {{ article.fields.body.content[0].content[0].value }}
     </div>

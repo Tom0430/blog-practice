@@ -4,6 +4,7 @@
       v-for="(post,i ) in posts"
       :key="i"
       :title="post.fields.title"
+      :images="post.fields.images.fields.file.url"
       :id="post.sys.id"
       :date="post.sys.updatedAt"
     />
