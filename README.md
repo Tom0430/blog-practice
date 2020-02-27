@@ -1,4 +1,8 @@
 # blog
+Nuxt.js + Contetful + Vuetify, Netlifyでデプロイ
+BlogSample
+url https://competent-boyd-c26166.netlify.com/
+
 
 > My mind-blowing Nuxt.js project
 
