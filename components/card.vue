@@ -12,7 +12,7 @@
         >
             <v-img
                 class="white--text align-end"
-                :src="images"
+                :src="image"
                 v-ripple
             >
                 <v-card-title>{{ title }}</v-card-title>
@@ -44,7 +44,7 @@ export default {
       type: String,
       default: ''
     },
-    images:{
+    image:{
         type: String,
         default: ''
     }
