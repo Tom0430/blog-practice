@@ -35,8 +35,8 @@ export default {
   transition: 'slide-left',
   data() {
      posts: posts,
-     parPage = 3,
-     currentPage = 1
+     parPage: 3,
+     currentPage: 1
   },
   components: {
     Card
@@ -68,3 +68,5 @@ export default {
   },
 }
 </script>
+
+//テスト
