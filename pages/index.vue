@@ -10,8 +10,8 @@
     />
     <v-pagination
       v-model="page"
-      :length="5"
-      @input = "getNumber"
+      :length= length
+      @input = "pageChange"
     ></v-pagination>
   </section>
 </template>
@@ -24,9 +24,11 @@ const client = createClient()
 export default {
   data () {
     return {
+      posts: [],
       page: 1,
       displayPosts: [],
       pageSize: 3,
+      length:null
     }
   },
   transition: 'slide-left',
@@ -34,22 +36,23 @@ export default {
     Card
   },
   methods: {
-    getNumber: function(number){
-      console.log(number)
-    }
+  pageChange: function(pageNumber){
+    this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+  },
   },
   asyncData({ env, params }) {
     return client
       .getEntries(env.CTF_BLOG_POST_TYPE_ID)
       .then(entries => {
         return {
-          posts: entries.items.slice(0,2)
+          posts: entries.items
         }
       })
       .catch(console.error)
   },
   mounted: function(){
     this.displayPosts = this.posts.slice(0,this.pageSize);
+    this.length = Math.ceil(this.posts.length/this.pageSize);
 
   }
 }
