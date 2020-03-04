@@ -4,6 +4,7 @@
       v-for="post in displayPosts"
       :key="post.index"
       :title="post.fields.title"
+      :tag="post.fields.tag"
       :image="post.fields.images.fields.file.url"
       :id="post.sys.id"
       :date="post.sys.updatedAt"

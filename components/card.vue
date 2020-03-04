@@ -4,29 +4,36 @@
       max-width="900"
       max-height="900"
     >
-        <nuxt-link
-        :to="{ name: 'blog-slug', params: {
-        sys: id
-        }}"
-        class="wrapper"
+      <nuxt-link
+      :to="{ name: 'blog-slug', params: {
+      sys: id
+      }}"
+      class="wrapper"
+      >
+        <v-img
+          class="white--text align-end"
+          :src="image"
+          v-ripple
         >
-            <v-img
-                class="white--text align-end"
-                :src="image"
-                v-ripple
-            >
-                <v-card-title>{{ title }}</v-card-title>
-            </v-img>
+        </v-img>
+      </nuxt-link>
 
-            <v-card-text class="text--primary">
-            </v-card-text>
+      <v-card-title>
+        <p class="display-1 text--primary">{{ title }}</p>
+      </v-card-title>
 
-            <v-card-actions>
-              <v-btn small class="white--text" color="#1976d2">
-                この記事を読む
-              </v-btn>
-            </v-card-actions>
-        </nuxt-link>
+      <v-card-actions>
+          <v-chip
+            class="ma-2"
+            color="pink"
+            label
+            text-color="white"
+          >
+            <v-icon left>mdi-label</v-icon>
+            {{ tag }}
+          </v-chip>
+      </v-card-actions>
+
     </v-card>
 </template>
 <script>
@@ -45,9 +52,18 @@ export default {
       default: ''
     },
     image:{
-        type: String,
-        default: ''
+      type: String,
+      default: ''
+    },
+    tag:{
+      type: String,
+      default: ''
     }
   },
 }
 </script>
+<style scoped>
+  .v-application p{
+    margin-bottom: 0;
+  }
+</style>

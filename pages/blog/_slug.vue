@@ -6,6 +6,7 @@
     <h1 class="slug_title">
       {{ article.fields.title }}
     </h1>
+    <p class="slug_tag">タグ：{{ article.fields.tag }}</p>
     <p class="slug_date">{{ article.fields.dateTime }}</p>
     <div>
       {{ article.fields.body.content[0].content[0].value }}
