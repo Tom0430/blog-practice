@@ -1,6 +1,6 @@
 <template>
   <section class="slug">
-    <div v-if="article.fields.images.fields.file">
+    <!-- <div v-if="article.fields.images.fields.file">
       <img width="1100" height="800" :src="article.fields.images.fields.file.url"/>
     </div>
     <h1 class="slug_title">
@@ -10,7 +10,8 @@
     <p class="slug_date">{{ article.fields.dateTime }}</p>
     <div>
       {{ article.fields.body.content[0].content[0].value }}
-    </div>
+    </div> -->
+    <p>{{$route.params.slug}}</p>
   </section>
 </template>
 <script>
@@ -18,22 +19,21 @@ import { createClient } from '~/plugins/contentful.js'
 
 const client = createClient()
 export default {
-  props: {
-    id: {
-      type: String,
-      default: ''
+  data(){
+    return{
+      article: null
     }
   },
-  transition: 'slide-right',
-  async asyncData({ env, params }) {
-    return await client
-      .getEntry(params.sys)
-      .then(entrie => {
-        return {
-          article: entrie
-        }
-      })
-      .catch(console.error)
+  created() {
+    this.$axios
+      .get('https://cdn.contentful.com/spaces/' + process.env.CTF_SPACE_ID + '/environments/master/entries'
+          , {params: {access_token: process.env.CTF_CDA_ACCESS_TOKEN}})
+      .then(res => {
+        console.log(res)
+        // this.article = res.data;
+      });
+
   }
-}
+
+};
 </script>
