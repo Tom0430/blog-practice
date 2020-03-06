@@ -1,15 +1,15 @@
 <template>
   <section class="slug">
-    <div v-if="article.fields.images.fields.file">
-      <img width="1100" height="800" :src="article.fields.images.fields.file.url"/>
+    <div v-if="post.fields.images.fields.file">
+      <img width="1100" height="800" :src="post.fields.images.fields.file.url"/>
     </div>
     <h1 class="slug_title">
-      {{ article.fields.title }}
+      {{ post.fields.title }}
     </h1>
-    <p class="slug_tag">タグ：{{ article.fields.tag }}</p>
-    <p class="slug_date">{{ article.fields.dateTime }}</p>
+    <p class="slug_tag">タグ：{{ post.fields.tag }}</p>
+    <p class="slug_date">{{ post.fields.dateTime }}</p>
     <div>
-      {{ article.fields.body.content[0].content[0].value }}
+      {{ post.fields.body.content[0].content[0].value }}
     </div>
   </section>
 </template>
@@ -30,7 +30,7 @@ export default {
       .getEntry(params.sys)
       .then(entrie => {
         return {
-          article: entrie
+          post: entrie
         }
       })
       .catch(console.error)

@@ -6,7 +6,7 @@
     >
       <nuxt-link
       :to="{ name: 'blog-slug', params: {
-      sys: id
+      sys: id,
       }}"
       class="wrapper"
       >
@@ -28,6 +28,7 @@
             color="pink"
             label
             text-color="white"
+            @click="toTagsSearchResult"
           >
             <v-icon left>mdi-label</v-icon>
             {{ tag }}
@@ -60,6 +61,17 @@ export default {
       default: ''
     }
   },
+  methods:{
+    toTagsSearchResult(){
+      this.$router.push({
+        name: 'tags-slug',
+        params: {
+          sys: this.id,
+          slug: this.tag
+        }
+      });
+    }
+  }
 }
 </script>
 <style scoped>
