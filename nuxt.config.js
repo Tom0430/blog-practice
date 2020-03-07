@@ -93,7 +93,8 @@ export default {
         .then(entries => {
           return [...entries.items.map(entry => `/blog/${entry.fields.slug}`)]
         })
-    }
+    },
+    fallback: true
   },
   env: {
     CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
