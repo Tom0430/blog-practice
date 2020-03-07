@@ -31,12 +31,11 @@ export default {
         , {params: {access_token: process.env.CTF_CDA_ACCESS_TOKEN}})
       .then(res => {
         const title = this.$route.params.slug
-
+        console.log(title)
         this.post = res.data.items.filter((item)=>{
-          let itemEncodedTitle = encodeURI(item.fields.title)
-          return itemEncodedTitle === title
+          console.log(item.fields.title)
+          return item.fields.title === title
         })
-
         this.image = res.data.includes.Asset.filter((asset) =>{
           return asset.sys.id === this.post[0].fields.images.sys.id
         })
