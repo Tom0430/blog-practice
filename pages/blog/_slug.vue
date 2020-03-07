@@ -34,8 +34,8 @@ export default {
         const encodedTitle = encodeURI(title)
 
         this.post = res.data.items.filter((item)=>{
-          let itemEncodedTitle = encodeURI(item.fields.title)
-          return itemEncodedTitle === encodedTitle
+          // let itemEncodedTitle = encodeURI(item.fields.title)
+          return item.fields.title === encodedTitle
         })
 
         this.image = res.data.includes.Asset.filter((asset) =>{
