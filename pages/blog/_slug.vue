@@ -32,7 +32,7 @@ export default {
       .then(res => {
         console.log(this.$route)
         const title = this.$route.params.slug
-        // const id = this.$route.params.sys
+        const id = this.$route.params.sys
         this.post = res.data.items.filter((item)=>{
           console.log(item.sys.id)
           return item.sys.id === id
