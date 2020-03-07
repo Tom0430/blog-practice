@@ -1,8 +1,8 @@
 <template>
   <section class="slug" v-if="post">
-    <div>
+    <!-- <div>
       <img width="1100" height="800" :src="image[0].fields.file.url"/>
-    </div>
+    </div> -->
     <h1 class="slug_title">
        {{ post[0].fields.title }}
     </h1>
@@ -37,8 +37,11 @@ export default {
           return item.fields.title === title
         })
         this.image = res.data.includes.Asset.filter((asset) =>{
+          console.log(asset.sys.id)
+          console.log(this.post[0].fields.images.sys.id)
           return asset.sys.id === this.post[0].fields.images.sys.id
         })
+        console.log(this.post)
       })
   }
 };
