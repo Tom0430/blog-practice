@@ -4,7 +4,7 @@
       max-width="900"
       max-height="900"
     >
-      <div @click="handleClick">
+      <div @click="toBlogSlug">
         <v-img
           class="white--text align-end"
           :src="image"
@@ -22,6 +22,7 @@
             color="pink"
             label
             text-color="white"
+            @click="toTagsSearchResult"
           >
             <v-icon left>mdi-label</v-icon>
             {{ tag }}
@@ -54,8 +55,17 @@ export default {
       default: ''
     }
   },
-  methods: {
-    handleClick() {
+  methods:{
+    toTagsSearchResult(){
+      this.$router.push({
+        name: 'tags-slug',
+        params: {
+          sys: this.id,
+          slug: this.tag
+        }
+      })
+    },
+    toBlogSlug() {
       this.$router.push({
         name: 'blog-slug',
         params: {
@@ -68,6 +78,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
   .v-application p{
     margin-bottom: 0;
