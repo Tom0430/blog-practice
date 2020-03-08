@@ -1,18 +1,17 @@
 <template>
     <div>
-        <p>タグ"{{ $route.params.slug }}" の検索結果</p>
-        <p>{{ posts }}</p>
-        <!-- <p>{{ posts[0] }}</p> -->
-        <!-- <card
-        v-for="post in posts"
-        :key="post.index"
-        :title="post.fields.title"
-        :tag="post.fields.tag"
-        :image="post.fields.images.sys.id"
-        :id="post.sys.id"
-        :date="post.sys.updatedAt"
-        /> -->
-
+        <p>タグ"{{ $route.params.slug }}" の一覧</p>
+        <div v-if="posts" class="cards-wrapper">
+          <card
+          v-for="post in posts"
+          :key="post.index"
+          :title="post.fields.title"
+          :tag="post.fields.tag"
+          :id="post.sys.id"
+          :date="post.sys.updatedAt"
+          :image="post.image[0].fields.file.url"
+          />
+        </div>
     </div>
 </template>
 
@@ -24,7 +23,8 @@ const client = createClient()
 export default {
   data(){
     return{
-      posts: []
+      posts: null,
+      images: []
     }
   },
   components: {
@@ -35,11 +35,15 @@ export default {
       .get('https://cdn.contentful.com/spaces/' + process.env.CTF_SPACE_ID + '/environments/master/entries'
         , {params: {access_token: process.env.CTF_CDA_ACCESS_TOKEN}})
       .then(res => {
-        console.log(res.data)
         const tag = this.$route.params.slug
         this.posts = res.data.items.filter(function(item){
           return item.fields.tag === tag
         })
+        this.posts.forEach(post => {
+          post.image = res.data.includes.Asset.filter((item)=>{
+            return post.fields.images.sys.id === item.sys.id
+          })
+        });
       })
 
     }
