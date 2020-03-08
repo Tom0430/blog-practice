@@ -4,23 +4,17 @@
       max-width="900"
       max-height="900"
     >
-      <nuxt-link
-      :to="{ name: 'blog-slug', params: {
-      sys: id,
-      }}"
-      class="wrapper"
-      >
+      <div @click="toBlogSlug">
         <v-img
           class="white--text align-end"
           :src="image"
           v-ripple
         >
         </v-img>
-      </nuxt-link>
-
-      <v-card-title>
-        <p class="display-1 text--primary">{{ title }}</p>
-      </v-card-title>
+        <v-card-title>
+          <p class="display-1 text--primary">{{ title }}</p>
+        </v-card-title>
+      </div>
 
       <v-card-actions>
           <v-chip
@@ -69,11 +63,22 @@ export default {
           sys: this.id,
           slug: this.tag
         }
+      })
+    },
+    toBlogSlug() {
+      this.$router.push({
+        name: 'blog-slug',
+        params: {
+          sys: this.id,
+          slug: this.title
+          // ここのsysはnuxt-linkやrouter-linkでも書いてあるので必要な設定
+        }
       });
     }
   }
 }
 </script>
+
 <style scoped>
   .v-application p{
     margin-bottom: 0;
