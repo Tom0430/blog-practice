@@ -6,6 +6,7 @@
     <h1 class="slug_title">
        {{ post[0].fields.title }}
     </h1>
+    <p class="slug_datetime">{{ slicedDateTime }}</p>
     <p class="slug_tag">タグ：{{ post[0].fields.tag }}</p>
     <p class="slug_date">{{ post[0].fields.dateTime }}</p>
     <div>
@@ -40,7 +41,15 @@ export default {
         this.image = res.data.includes.Asset.filter((asset) =>{
           return asset.sys.id === this.post[0].fields.images.sys.id
         })
+        console.log(this.post)
       })
+  },
+  computed:{
+    slicedDateTime: function(){
+      let date = this.post[0].sys.createdAt.slice(0,10);
+      let time = this.post[0].sys.createdAt.slice(11,16);
+      return date + ' ' + time
+    },
   }
 };
 </script>

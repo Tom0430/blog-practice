@@ -53,7 +53,6 @@ export default {
       .catch(console.error)
   },
   mounted: function(){
-    console.log(this.posts)
     this.displayPosts = this.posts.slice(0,this.pageSize);
     this.length = Math.ceil(this.posts.length/this.pageSize);
 
