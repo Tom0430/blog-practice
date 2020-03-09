@@ -5,9 +5,10 @@
       :key="post.index"
       :title="post.fields.title"
       :tag="post.fields.tag"
+      :body="post.fields.body.content[0].content[0].value"
       :image="post.fields.images.fields.file.url"
       :id="post.sys.id"
-      :date="post.sys.updatedAt"
+      :dateTime="post.sys.createdAt"
     />
     <v-pagination
       v-model="page"
@@ -52,6 +53,7 @@ export default {
       .catch(console.error)
   },
   mounted: function(){
+    console.log(this.posts)
     this.displayPosts = this.posts.slice(0,this.pageSize);
     this.length = Math.ceil(this.posts.length/this.pageSize);
 

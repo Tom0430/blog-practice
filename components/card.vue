@@ -4,6 +4,7 @@
       max-width="900"
       max-height="900"
     >
+      <span>{{ slicedDateTime }}</span>
       <div @click="toBlogSlug">
         <v-img
           class="white--text align-end"
@@ -12,7 +13,7 @@
         >
         </v-img>
         <v-card-title>
-          <p class="display-1 text--primary">{{ title }}</p>
+          <p class="display-1 text--primary">{{ title | truncate }}</p>
         </v-card-title>
       </div>
 
@@ -22,7 +23,7 @@
             color="pink"
             label
             text-color="white"
-            @click="toTagsSearchResult"
+            @click="sameTagList"
           >
             <v-icon left>mdi-label</v-icon>
             {{ tag }}
@@ -33,6 +34,16 @@
 </template>
 <script>
 export default {
+  filters: {
+    truncate: function(value) {
+      var length = 20;
+      var omission = "...";
+      if (value.length <= length) {
+        return value;
+      }
+      return value.substring(0, length) + omission;
+    }
+  },
   props: {
     title: {
       type: String,
@@ -42,11 +53,15 @@ export default {
       type: String,
       default: ''
     },
-    date: {
+    dateTime: {
       type: String,
       default: ''
     },
     image:{
+      type: String,
+      default: ''
+    },
+    body:{
       type: String,
       default: ''
     },
@@ -55,8 +70,15 @@ export default {
       default: ''
     }
   },
+  computed:{
+    slicedDateTime: function(){
+      let date = this.dateTime.slice(0,10);
+      let time = this.dateTime.slice(11,16);
+      return date + ' ' + time
+    },
+  },
   methods:{
-    toTagsSearchResult(){
+    sameTagList(){
       this.$router.push({
         name: 'tags-slug',
         params: {
