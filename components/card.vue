@@ -1,13 +1,14 @@
 <template>
     <v-card
       class="mx-auto text-center elevation-2 pa-12 headline"
-      max-width="900"
-      max-height="900"
+      max-width="600"
+      max-height="510"
     >
-      <span>{{ slicedDateTime }}</span>
       <div @click="toBlogSlug">
         <v-img
           class="white--text align-end"
+          width="500"
+          height="330"
           :src="image"
           v-ripple
         >
@@ -16,18 +17,18 @@
           <p class="display-1 text--primary">{{ title | truncate }}</p>
         </v-card-title>
       </div>
-
       <v-card-actions>
-          <v-chip
-            class="ma-2"
-            color="pink"
-            label
-            text-color="white"
-            @click="sameTagList"
-          >
-            <v-icon left>mdi-label</v-icon>
-            {{ tag }}
-          </v-chip>
+        <span>{{ slicedDateTime }}</span>
+        <v-chip
+          class="ma-2"
+          color="pink"
+          label
+          text-color="white"
+          @click="toSameTagList"
+        >
+          <v-icon left>mdi-label</v-icon>
+          {{ tag }}
+        </v-chip>
       </v-card-actions>
 
     </v-card>
@@ -36,7 +37,7 @@
 export default {
   filters: {
     truncate: function(value) {
-      var length = 20;
+      var length = 13;
       var omission = "...";
       if (value.length <= length) {
         return value;
@@ -78,7 +79,7 @@ export default {
     },
   },
   methods:{
-    sameTagList(){
+    toSameTagList(){
       this.$router.push({
         name: 'tags-slug',
         params: {
@@ -102,7 +103,18 @@ export default {
 </script>
 
 <style scoped>
+  .v-card{
+    margin-bottom: 10px;
+  }
   .v-application p{
     margin-bottom: 0;
   }
+  .v-card__title{
+    padding-bottom: 0;
+    padding-left: 8px;
+  }
+  .v-card__actions{
+    padding-top:0;
+  }
+
 </style>

@@ -87,6 +87,7 @@ export default {
     */
     extend (config, ctx) {
     }
+    // run build とか generate するときの設定 ルーティングが動的に
   },
   generate: {
     routes() {

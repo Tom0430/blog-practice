@@ -1,28 +1,30 @@
 <template>
   <section class="index">
-    <card
-      v-for="post in displayPosts"
-      :key="post.index"
-      :title="post.fields.title"
-      :tag="post.fields.tag"
-      :body="post.fields.body.content[0].content[0].value"
-      :image="post.fields.images.fields.file.url"
-      :id="post.sys.id"
-      :dateTime="post.sys.createdAt"
-    />
-    <v-pagination
-      v-model="page"
-      :length= length
-      @input = "pageChange"
-    ></v-pagination>
+    <div>
+      <card
+        v-for="post in displayPosts"
+        :key="post.index"
+        :title="post.fields.title"
+        :tag="post.fields.tag"
+        :body="post.fields.body.content[0].content[0].value"
+        :image="post.fields.images.fields.file.url"
+        :id="post.sys.id"
+        :dateTime="post.sys.createdAt"
+      />
+      <v-pagination
+        v-model="page"
+        :length= length
+        @input = "pageChange"
+      ></v-pagination>
+    </div>
   </section>
 </template>
 
 <script>
 import Card from '~/components/card.vue'
 import { createClient } from '~/plugins/contentful.js'
-
 const client = createClient()
+
 export default {
   data () {
     return {
@@ -35,7 +37,7 @@ export default {
   },
   transition: 'slide-left',
   components: {
-    Card
+    Card,
   },
   methods: {
   pageChange: function(pageNumber){
