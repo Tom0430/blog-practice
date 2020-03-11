@@ -1,6 +1,7 @@
 <template>
   <section class="index">
     <div>
+      <topImage></topImage>
       <card
         v-for="post in displayPosts"
         :key="post.index"
@@ -22,6 +23,7 @@
 
 <script>
 import Card from '~/components/card.vue'
+import topImage from '~/components/topImage.vue'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -38,6 +40,7 @@ export default {
   transition: 'slide-left',
   components: {
     Card,
+    topImage
   },
   methods: {
   pageChange: function(pageNumber){
