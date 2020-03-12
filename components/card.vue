@@ -26,11 +26,10 @@
           text-color="white"
           @click="toSameTagList"
         >
-          <v-icon left>mdi-label</v-icon>
+          <v-icon>mdi-label</v-icon>
           {{ tag }}
         </v-chip>
       </v-card-actions>
-
     </v-card>
 </template>
 <script>

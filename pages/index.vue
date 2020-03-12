@@ -2,6 +2,14 @@
   <section class="index">
     <div>
       <topImage></topImage>
+        <hooper>
+          <slide>
+            slide 1
+          </slide>
+          <slide>
+            slide 2
+          </slide>
+        </hooper>
       <card
         v-for="post in displayPosts"
         :key="post.index"
@@ -22,6 +30,7 @@
 </template>
 
 <script>
+import { Hooper, Slide } from 'hooper'
 import Card from '~/components/card.vue'
 import topImage from '~/components/topImage.vue'
 import { createClient } from '~/plugins/contentful.js'
@@ -40,7 +49,9 @@ export default {
   transition: 'slide-left',
   components: {
     Card,
-    topImage
+    topImage,
+    Hooper,
+    Slide
   },
   methods: {
   pageChange: function(pageNumber){
