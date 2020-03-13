@@ -13,7 +13,6 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "contentful": "^7.14.0",
-    "hooper": "^0.3.4",
     "nuxt": "^2.0.0",
     "vuejs-paginate": "^2.1.0"
   },

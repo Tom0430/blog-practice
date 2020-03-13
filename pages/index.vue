@@ -2,14 +2,6 @@
   <section class="index">
     <div>
       <topImage></topImage>
-        <hooper>
-          <slide>
-            slide 1
-          </slide>
-          <slide>
-            slide 2
-          </slide>
-        </hooper>
       <card
         v-for="post in displayPosts"
         :key="post.index"
@@ -30,7 +22,6 @@
 </template>
 
 <script>
-import { Hooper, Slide } from 'hooper'
 import Card from '~/components/card.vue'
 import topImage from '~/components/topImage.vue'
 import { createClient } from '~/plugins/contentful.js'
@@ -40,6 +31,7 @@ export default {
   data () {
     return {
       posts: [],
+      images: [],
       page: 1,
       displayPosts: [],
       pageSize: 3,
@@ -49,9 +41,7 @@ export default {
   transition: 'slide-left',
   components: {
     Card,
-    topImage,
-    Hooper,
-    Slide
+    topImage
   },
   methods: {
   pageChange: function(pageNumber){
@@ -63,12 +53,14 @@ export default {
       .getEntries(env.CTF_BLOG_POST_TYPE_ID)
       .then(entries => {
         return {
-          posts: entries.items
+          posts: entries.items,
+          images: entries.includes.Asset
         }
       })
       .catch(console.error)
   },
   mounted: function(){
+    console.log(this.images)
     this.displayPosts = this.posts.slice(0,this.pageSize);
     this.length = Math.ceil(this.posts.length/this.pageSize);
 
