@@ -1,8 +1,6 @@
 <template>
   <section class="index">
-    <div>
       <topImage></topImage>
-      <div v-if="posts.length > 0">
         <card
           v-for="post in displayPosts"
           :key="post.index"
@@ -18,11 +16,9 @@
           :length= length
           @input = "pageChange"
         ></v-pagination>
-      </div>
-      <div v-else>
-        <Loading></Loading>
-      </div>
-    </div>
+
+      <Loading v-if="loading"></Loading>
+
   </section>
 </template>
 
@@ -41,7 +37,8 @@ export default {
       page: 1,
       displayPosts: [],
       pageSize: 3,
-      length:null
+      length:null,
+      loading: true
     }
   },
   transition: 'slide-left',
@@ -51,9 +48,13 @@ export default {
     Loading
   },
   methods: {
-  pageChange: function(pageNumber){
-    this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
-  },
+    pageChange: function(pageNumber){
+      this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+    },
+    finishLoading () {
+      this.loading = false
+    }
+
   },
   asyncData({ env, params }) {
     return client
@@ -67,7 +68,7 @@ export default {
       .catch(console.error)
   },
   mounted: function(){
-    console.log(this.images)
+    setTimeout(this.finishLoading,1000)
     this.displayPosts = this.posts.slice(0,this.pageSize);
     this.length = Math.ceil(this.posts.length/this.pageSize);
 
