@@ -1,28 +1,32 @@
 {
   "name": "blog",
   "version": "1.0.0",
+  "private": true,
   "description": "My mind-blowing Nuxt.js project",
   "author": "",
-  "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "nuxt",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "contentful": "^7.14.0",
     "loaders.css": "^0.1.2",
     "nuxt": "^2.0.0",
-    "vuejs-paginate": "^2.1.0"
+    "vuejs-paginate": "^2.1.0",
+    "vuetify": "^2.2.11"
   },
   "devDependencies": {
+    "@mdi/font": "^5.0.45",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/vuetify": "^1.11.0",
     "deepmerge": "^4.2.2",
     "fibers": "^4.0.2",
     "sass": "^1.26.3",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-vuetify": "~2.0.5",
+    "vuetify-loader": "^1.3.0"
   }
 }

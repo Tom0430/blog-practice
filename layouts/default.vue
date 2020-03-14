@@ -1,5 +1,6 @@
 <template>
   <v-app base>
+    <Loading v-if="loading"></Loading>
     <v-app-bar
       :clipped-left="clipped"
       fixed
@@ -25,12 +26,14 @@
 </template>
 
 <script>
+import Loading from "@/components/Loading";
 export default {
   data () {
     return {
       clipped: false,
       drawer: false,
       fixed: false,
+      loading: true,
       items: [
         {
           icon: 'mdi-apps',
@@ -48,6 +51,18 @@ export default {
       rightDrawer: false,
       title: 'BlogSample'
     }
+  },
+  components:{
+    Loading
+  },
+  methods:{
+    finishLoading () {
+      this.loading = false
+    }
+  },
+  mounted: function(){
+    setTimeout(this.finishLoading, 400)
+    console.log(this.loading)
   }
 }
 </script>

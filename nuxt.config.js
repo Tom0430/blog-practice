@@ -1,4 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
 const pkg = require('./package')
 const { getConfigForKeys } = require('./lib/config.js')
 const ctfConfig = getConfigForKeys([

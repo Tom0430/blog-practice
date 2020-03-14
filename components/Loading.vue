@@ -26,7 +26,7 @@ $theme-color: #25b290;
   width: 100%;
   height: 100vh;
   background: #eee;
-  opacity: 1;
+  opacity: 0.3;
 }
 
 .ball-clip-rotate > div {

@@ -17,8 +17,6 @@
           @input = "pageChange"
         ></v-pagination>
 
-      <Loading v-if="loading"></Loading>
-
   </section>
 </template>
 
@@ -26,7 +24,6 @@
 import Card from '~/components/Card.vue'
 import TopImage from '~/components/TopImage.vue'
 import { createClient } from '~/plugins/contentful.js'
-import Loading from "@/components/Loading";
 const client = createClient()
 
 export default {
@@ -38,23 +35,18 @@ export default {
       displayPosts: [],
       pageSize: 3,
       length:null,
-      loading: true
+
     }
   },
   transition: 'slide-left',
   components: {
     Card,
     TopImage,
-    Loading
   },
   methods: {
     pageChange: function(pageNumber){
       this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
     },
-    finishLoading () {
-      this.loading = false
-    }
-
   },
   asyncData({ env, params }) {
     return client
@@ -68,10 +60,8 @@ export default {
       .catch(console.error)
   },
   mounted: function(){
-    setTimeout(this.finishLoading,1000)
     this.displayPosts = this.posts.slice(0,this.pageSize);
     this.length = Math.ceil(this.posts.length/this.pageSize);
-
   }
 }
 </script>
