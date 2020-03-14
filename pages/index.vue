@@ -2,29 +2,35 @@
   <section class="index">
     <div>
       <topImage></topImage>
-      <card
-        v-for="post in displayPosts"
-        :key="post.index"
-        :title="post.fields.title"
-        :tag="post.fields.tag"
-        :body="post.fields.body.content[0].content[0].value"
-        :image="post.fields.images.fields.file.url"
-        :id="post.sys.id"
-        :dateTime="post.sys.createdAt"
-      />
-      <v-pagination
-        v-model="page"
-        :length= length
-        @input = "pageChange"
-      ></v-pagination>
+      <div v-if="posts.length > 0">
+        <card
+          v-for="post in displayPosts"
+          :key="post.index"
+          :title="post.fields.title"
+          :tag="post.fields.tag"
+          :body="post.fields.body.content[0].content[0].value"
+          :image="post.fields.images.fields.file.url"
+          :id="post.sys.id"
+          :dateTime="post.sys.createdAt"
+        />
+        <v-pagination
+          v-model="page"
+          :length= length
+          @input = "pageChange"
+        ></v-pagination>
+      </div>
+      <div v-else>
+        <Loading></Loading>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import Card from '~/components/card.vue'
-import topImage from '~/components/topImage.vue'
+import Card from '~/components/Card.vue'
+import TopImage from '~/components/TopImage.vue'
 import { createClient } from '~/plugins/contentful.js'
+import Loading from "@/components/Loading";
 const client = createClient()
 
 export default {
@@ -41,7 +47,8 @@ export default {
   transition: 'slide-left',
   components: {
     Card,
-    topImage
+    TopImage,
+    Loading
   },
   methods: {
   pageChange: function(pageNumber){
