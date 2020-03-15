@@ -8,11 +8,17 @@
       color="primary"
     >
       <v-toolbar-title v-text="title" />
-      <v-spacer />
     </v-app-bar>
     <v-content>
       <v-container>
-        <nuxt />
+        <v-row>
+          <v-col cols="3">
+            <p>サイドバー設置場所</p>
+          </v-col>
+          <v-col cols="9">
+            <nuxt />
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
     <v-footer
@@ -61,8 +67,14 @@ export default {
     }
   },
   mounted: function(){
-    setTimeout(this.finishLoading, 400)
+    setTimeout(this.finishLoading, 800)
     console.log(this.loading)
   }
 }
 </script>
+<style scoped>
+.container{
+  margin: 0;
+  padding: 0;
+}
+</style>
