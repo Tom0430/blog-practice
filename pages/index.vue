@@ -1,9 +1,12 @@
 <template>
   <section class="index">
-      <topImage></topImage>
+    <topImage></topImage>
         <v-container fluid>
-          <v-col cols="12">
-            <v-row>
+          <v-row>
+            <v-col cols="4">
+              <p>sidebar</p>
+            </v-col>
+            <v-col cols="8">
               <card
                 v-for="post in displayPosts"
                 :key="post.index"
@@ -14,8 +17,8 @@
                 :id="post.sys.id"
                 :dateTime="post.sys.createdAt"
               />
-            </v-row>
-          </v-col>
+            </v-col>
+          </v-row>
         </v-container>
         <v-pagination
           v-model="page"
