@@ -3,10 +3,10 @@
     <topImage></topImage>
         <v-container fluid>
           <v-row>
-            <v-col cols="4">
-              <p>sidebar</p>
+            <v-col cols="3">
+              <Calendar/>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="9">
               <card
                 v-for="post in displayPosts"
                 :key="post.index"
@@ -32,6 +32,7 @@
 <script>
 import Card from '~/components/Card.vue'
 import TopImage from '~/components/TopImage.vue'
+import Calendar from '~/components/Calendar.vue'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -42,7 +43,7 @@ export default {
       images: [],
       page: 1,
       displayPosts: [],
-      pageSize: 3,
+      pageSize: 4,
       length:null,
 
     }
@@ -51,6 +52,7 @@ export default {
   components: {
     Card,
     TopImage,
+    Calendar
   },
   methods: {
     pageChange: function(pageNumber){
@@ -74,3 +76,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

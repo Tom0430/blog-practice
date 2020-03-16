@@ -11,10 +11,12 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "@jiayingy/vue-single-date-picker": "0.4.3",
     "@nuxtjs/axios": "^5.9.5",
     "contentful": "^7.14.0",
     "loaders.css": "^0.1.2",
     "nuxt": "^2.0.0",
+    "vue-single-date-picker": "^0.4.6",
     "vuejs-paginate": "^2.1.0",
     "vuetify": "^2.2.11"
   },

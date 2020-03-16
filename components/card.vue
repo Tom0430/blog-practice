@@ -36,7 +36,7 @@
 export default {
   filters: {
     truncate: function(value) {
-      var length = 13;
+      var length = 11;
       var omission = "...";
       if (value.length <= length) {
         return value;
