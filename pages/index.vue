@@ -4,7 +4,9 @@
         <v-container fluid>
           <v-row>
             <v-col cols="3">
-              <Calendar/>
+              <Calendar
+               :days="days"
+              />
             </v-col>
             <v-col cols="9">
               <card
@@ -41,6 +43,7 @@ export default {
     return {
       posts: [],
       images: [],
+      days: [],
       page: 1,
       displayPosts: [],
       pageSize: 4,
@@ -65,7 +68,10 @@ export default {
       .then(entries => {
         return {
           posts: entries.items,
-          images: entries.includes.Asset
+          images: entries.includes.Asset,
+          days: entries.items.map(function(item){
+            return item.sys.createdAt
+          })
         }
       })
       .catch(console.error)

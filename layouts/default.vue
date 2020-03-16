@@ -62,8 +62,7 @@ export default {
     }
   },
   mounted: function(){
-    setTimeout(this.finishLoading, 800)
-    console.log(this.loading)
+    setTimeout(this.finishLoading, 600)
   }
 }
 </script>

@@ -2,9 +2,9 @@
     <div id="app">
         <span class="btn-modal-close" @click="close($event)"></span>
         <div class="calendar-title">
-            <span class="btn-monthMove prev fa fa-angle-left" @click="movePrevMonth"></span>
+            <span class="btn-monthMove prev fa fa-angle-left" @click="movePrevMonth">◀︎</span>
             {{currentYear+"/"+currentMonth}}
-            <span class="btn-monthMove next fa fa-angle-right" @click="moveNextMonth"></span>
+            <span class="btn-monthMove next fa fa-angle-right" @click="moveNextMonth">▶︎</span>
         </div>
         <div class="calendar-body">
             <div class="calendar-body__item">
@@ -32,7 +32,11 @@ export default {
         holidays:[]
         }
     },
+    props:{
+        days: Array
+    },
     created(){
+        console.log(this.days)
         const date  = new Date();
         [this.currentYear,  this.currentMonth, this.currentDate] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
         this.today = this.selectedDay = `${this.currentYear}-${('0' + this.currentMonth).slice(-2)}-${this.currentDate}`;
