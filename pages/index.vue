@@ -1,9 +1,14 @@
 <template>
   <section class="index">
-      <topImage></topImage>
+    <topImage></topImage>
         <v-container fluid>
-          <v-col cols="12">
-            <v-row>
+          <v-row>
+            <v-col cols="3">
+              <Calendar
+               :days="days"
+              />
+            </v-col>
+            <v-col cols="9">
               <card
                 v-for="post in displayPosts"
                 :key="post.index"
@@ -14,8 +19,8 @@
                 :id="post.sys.id"
                 :dateTime="post.sys.createdAt"
               />
-            </v-row>
-          </v-col>
+            </v-col>
+          </v-row>
         </v-container>
         <v-pagination
           v-model="page"
@@ -29,6 +34,7 @@
 <script>
 import Card from '~/components/Card.vue'
 import TopImage from '~/components/TopImage.vue'
+import Calendar from '~/components/Calendar.vue'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -37,9 +43,10 @@ export default {
     return {
       posts: [],
       images: [],
+      days: [],
       page: 1,
       displayPosts: [],
-      pageSize: 3,
+      pageSize: 4,
       length:null,
 
     }
@@ -48,6 +55,7 @@ export default {
   components: {
     Card,
     TopImage,
+    Calendar
   },
   methods: {
     pageChange: function(pageNumber){
@@ -60,7 +68,10 @@ export default {
       .then(entries => {
         return {
           posts: entries.items,
-          images: entries.includes.Asset
+          images: entries.includes.Asset,
+          days: entries.items.map(function(item){
+            return item.sys.createdAt
+          })
         }
       })
       .catch(console.error)
@@ -71,3 +82,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

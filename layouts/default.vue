@@ -11,13 +11,8 @@
     </v-app-bar>
     <v-content>
       <v-container>
-        <v-row>
-          <v-col cols="3">
-            <p>サイドバー設置場所</p>
-          </v-col>
-          <v-col cols="9">
+        <v-row class="nuxt-wrapper">
             <nuxt />
-          </v-col>
         </v-row>
       </v-container>
     </v-content>
@@ -67,14 +62,12 @@ export default {
     }
   },
   mounted: function(){
-    setTimeout(this.finishLoading, 800)
-    console.log(this.loading)
+    setTimeout(this.finishLoading, 600)
   }
 }
 </script>
 <style scoped>
-.container{
-  margin: 0;
-  padding: 0;
+.nuxt-wrapper{
+  justify-content: center;
 }
 </style>
