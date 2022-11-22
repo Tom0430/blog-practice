@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.9.5",
     "contentful": "^7.14.0",
     "loaders.css": "^0.1.2",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "vuejs-paginate": "^2.1.0",
     "vuetify": "^2.2.11"
   },
